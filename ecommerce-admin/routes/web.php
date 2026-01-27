@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin Routes Group
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -35,6 +35,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         Route::put('/{admin}', [AdminController::class, 'update'])->name('update');
         Route::delete('/{admin}', [AdminController::class, 'destroy'])->name('destroy');
         Route::patch('/{admin}/toggle-status', [AdminController::class, 'toggleStatus'])->name('toggle-status');
+        Route::get('/admins/{admin}/edit', [AdminController::class, 'edit']);
+        Route::put('/admins/{admin}', [AdminController::class, 'update']);
+        Route::delete('/admins/{admin}', [AdminController::class, 'destroy']);
+        Route::post('/admins/{admin}/toggle-status', [AdminController::class, 'toggleStatus']);
+
     });
 
     // User Management

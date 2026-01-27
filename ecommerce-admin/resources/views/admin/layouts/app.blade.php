@@ -152,9 +152,9 @@
 <body>
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-        <div class="p-3 text-white">
-            <h5 class="mb-0">{{ config('app.name') }}</h5>
-            <small class="text-muted">Administration Panel</small>
+        <div class="p-3 text-white bg-dark text-center mb-4">
+            <h5 class="text-white mb-0">{{ config('app.name') }}</h5>
+            <small class=" text-gray-300">Administration Panel</small>
         </div>
 
         <ul class="nav flex-column">
