@@ -1,13 +1,22 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::middleware(['auth'])->group(function () {
+    // Your existing profile routes...
 
+    // Add these new routes
+    Route::put('/profile/basic', [ProfileController::class, 'updateBasic'])->name('profile.update-basic');
+    Route::put('/profile/personal', [ProfileController::class, 'updatePersonal'])->name('profile.update-personal');
+    Route::put('/profile/address', [ProfileController::class, 'updateAddress'])->name('profile.update-address');
+    Route::get('/profile/view', [ProfileController::class, 'viewProfile'])->name('profile.view');
+});
 
 
 Route::get('/', function () {
@@ -23,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Admin Routes Group
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {

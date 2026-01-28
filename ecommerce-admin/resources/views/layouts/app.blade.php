@@ -11,141 +11,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
     <!-- DataTables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
     <!-- Select2 -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <!-- Custom CSS -->
-    <style>
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 250px;
-            background: #343a40;
-            transition: all 0.3s;
-            z-index: 1000;
-            padding-top: 56px;
-        }
-
-        .sidebar .nav-link {
-            color: #adb5bd;
-            padding: 0.75rem 1rem;
-            border-left: 3px solid transparent;
-        }
-
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.1);
-            border-left-color: #007bff;
-        }
-
-        .sidebar .nav-link i {
-            width: 20px;
-            margin-right: 10px;
-        }
-
-        .main-content {
-            margin-left: 250px;
-            padding-top: 56px;
-            min-height: 100vh;
-            background: #f8f9fa;
-        }
-
-        .navbar-admin {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1030;
-            margin-left: 250px;
-        }
-
-        .sidebar.collapsed {
-            margin-left: -250px;
-        }
-
-        .sidebar.collapsed+.main-content {
-            margin-left: 0;
-        }
-
-        .sidebar.collapsed+.main-content .navbar-admin {
-            margin-left: 0;
-        }
-
-        .stat-card {
-            border-radius: 10px;
-            transition: transform 0.2s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .badge-admin {
-            background: #dc3545;
-        }
-
-        .badge-super-admin {
-            background: #6f42c1;
-        }
-
-        .badge-user {
-            background: #28a745;
-        }
-
-        .table-actions {
-            white-space: nowrap;
-            width: 1%;
-        }
-
-        .product-image {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .image-gallery img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 4px;
-            border: 1px solid #dee2e6;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                margin-left: -250px;
-            }
-
-            .sidebar.show {
-                margin-left: 0;
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .navbar-admin {
-                margin-left: 0;
-            }
-        }
-    </style>
-
+    @vite(['resources/css/index.css'])
     @stack('styles')
 </head>
 
@@ -200,7 +73,7 @@
             </li>
 
             <li class="nav-item mt-4">
-                <a class="nav-link" href="{{ route('dashboard') }}">
+                <a class="nav-link" href="{{ route('home') }}">
                     <i class="bi bi-house-door"></i> Back to Site
                 </a>
             </li>
@@ -226,7 +99,7 @@
                             <i class="bi bi-person-circle"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.view') }}">Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -244,7 +117,9 @@
 
         <!-- Page Content -->
         <div class="container-fluid p-4">
+
             @yield('content')
+
         </div>
     </div>
 
