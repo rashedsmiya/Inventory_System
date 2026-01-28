@@ -6,6 +6,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -57,6 +61,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Product Management
     Route::prefix('products')->name('products.')->group(function () {
+        Route::get('/admin/product-categories/{productCategory}', [ProductCategoryController::class, 'show'])
+    ->name('admin.product-categories.show');
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/create', [ProductController::class, 'create'])->name('create');
         Route::post('/', [ProductController::class, 'store'])->name('store');
@@ -73,6 +79,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Product Categories
     Route::prefix('product-categories')->name('product-categories.')->group(function () {
+        Route::post('/admin/product-categories/update-order', [ProductCategoryController::class, 'updateOrder'])
+        ->name('admin.product-categories.update-order');
         Route::get('/', [ProductCategoryController::class, 'index'])->name('index');
         Route::get('/create', [ProductCategoryController::class, 'create'])->name('create');
         Route::post('/', [ProductCategoryController::class, 'store'])->name('store');

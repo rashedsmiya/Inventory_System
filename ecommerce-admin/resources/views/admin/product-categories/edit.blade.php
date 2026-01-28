@@ -1,5 +1,5 @@
 {{-- Edit Product Category --}}
-@extends('admin.layouts.app')
+@extends('layouts.app')
 
 @section('title', 'Edit Category')
 

@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 
 @section('title', 'User Management')
 
@@ -9,9 +9,41 @@
             <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
                 <i class="bi bi-person-plus"></i> Add User
             </a>
+            <!-- Filter Button (your current button) -->
             <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#filterModal">
                 <i class="bi bi-funnel"></i> Filters
             </button>
+
+            <!-- Filter Modal (ADD THIS) -->
+            <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="filterModalLabel">Filter Options</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="GET" action="{{ route('admin.users.index') }}">
+                            <div class="modal-body">
+                                <!-- Add your filter fields here -->
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select name="status" id="status" class="form-select">
+                                        <option value="">All</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                </div>
+
+                                <!-- Add more filter fields as needed -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Apply Filters</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -88,6 +120,7 @@
                                         title="View">
                                         <i class="bi bi-eye"></i>
                                     </a>
+
                                     <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-warning"
                                         title="Edit">
                                         <i class="bi bi-pencil"></i>
@@ -122,12 +155,12 @@
             </div>
 
             <!-- Pagination -->
-            <div class="d-flex justify-content-between align-items-center mt-3">
-                <div>
+            <div class="d-flex justify-content-between align-items-center mt-3 ">
+                <div class="#">
                     Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} of {{ $users->total() }} users
                 </div>
                 <div>
-                    {{ $users->links() }}
+                    {{ $users->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

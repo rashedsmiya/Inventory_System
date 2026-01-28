@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 
 @section('title', 'Product Categories')
 
@@ -115,13 +115,14 @@
             </div>
 
             <!-- Pagination -->
+            <!-- Pagination -->
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>
-                    Showing {{ $categories->firstItem() }} to {{ $categories->lastItem() }} of {{ $categories->total() }}
-                    categories
+                    Showing {{ $categories->firstItem() ?? 0 }} to {{ $categories->lastItem() ?? 0 }} of
+                    {{ $categories->total() }} categories
                 </div>
                 <div>
-                    {{ $categories->links() }}
+                    {{ $categories->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

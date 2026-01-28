@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 
 @section('title', 'Product Management')
 
@@ -88,7 +88,7 @@
                                         @else
                                             <div
                                                 class="product-image bg-light me-3 d-flex align-items-center justify-content-center">
-                                                <i class="bi bi-image text-muted"></i>
+                                                {{ strtoupper(substr($product->name, 0, 1)) }}
                                             </div>
                                         @endif
                                         <div>
@@ -191,7 +191,7 @@
                     products
                 </div>
                 <div>
-                    {{ $products->links() }}
+                    {{ $products->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

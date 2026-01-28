@@ -9,6 +9,12 @@ use Illuminate\Support\Str;
 
 class ProductCategoryController extends Controller
 {
+
+public function show(ProductCategory $productCategory)
+{
+    return view('admin.product-categories.show', compact('productCategory'));
+}
+
     public function index(Request $request)
     {
         $query = ProductCategory::with('parent');
