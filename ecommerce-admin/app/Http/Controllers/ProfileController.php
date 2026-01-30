@@ -108,7 +108,7 @@ class ProfileController extends Controller
         $user->phone = $request->phone;
         $user->bio = $request->bio;
         $user->save();
-
+        
         return Redirect::route('profile.edit')->with('success', 'Personal information updated successfully!');
     }
 
